@@ -28,7 +28,6 @@ export default function Home(){
                         <div><YouTube type='thumbnail' videoUrl={videoUrl}/></div>
                         <div>Posted by: {author}</div>
                         <div>Title: {title}</div>
-                        <div>Description: {desc}</div>
                         <NavLink to={`/video/${_id}`}>Details</NavLink>
                         <br/><br/>
                     </div>
