@@ -15,7 +15,7 @@ export default function Navbar(){
           {!user && <NavLink to='/signup'>SIGN UP</NavLink>}
           {user && <NavLink to='/postvideo'>POST VIDEO</NavLink>}
           {user && <NavLink to='/' onClick={()=>{dispatch(setLogout());alert("You are logged out")}}>LOGOUT</NavLink>}
-          {user && `Logged in as ${user.username}`}
+          {user && `Logged in as ${user.channelName}`}
           <br/><br/>
         </div>
     )
