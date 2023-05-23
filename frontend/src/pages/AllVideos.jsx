@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
-import YouTube from "../components/YouTube"
+import Preview from '../components/Preview.jsx'
 
-export default function Home(){
+export default function AllVideos(){
     const [allVideos, setAllVideos] = useState(null)
 
     const getVideos = async () => {
@@ -19,18 +18,12 @@ export default function Home(){
         getVideos()
     }, [allVideos])
 
+    
     return (
-        <div>
-            <div>Home</div><br/>
+        <div className="AllVideos">
             {allVideos && 
-                allVideos.map( ({ _id, author, title, videoUrl, desc }) => 
-                    <div key={_id}>
-                        <div><YouTube type='thumbnail' videoUrl={videoUrl}/></div>
-                        <div>Posted by: {author}</div>
-                        <div>Title: {title}</div>
-                        <NavLink to={`/video/${_id}`}>Details</NavLink>
-                        <br/><br/>
-                    </div>
+                allVideos.map( ({ _id, user, author, title, videoUrl }) => 
+                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
                 )
             }
         </div>

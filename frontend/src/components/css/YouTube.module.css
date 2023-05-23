@@ -1,0 +1,12 @@
+.thumbnail {
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+}
+
+.iframe {
+    display: block;
+    width: 48vw;
+    height: 27vw;
+    border: none;
+}

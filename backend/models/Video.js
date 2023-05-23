@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'
 
 const VideoSchema = mongoose.Schema({
-    userId: { // user id of author
-        type: String,
+    user: { // Reference to user row
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     title: { // video title
@@ -11,7 +12,7 @@ const VideoSchema = mongoose.Schema({
         min: 2,
         max: 40
     },
-    author: { // who posted the video (channel name)
+    author: { // user's channel name
         type: String,
         required: true
     },
@@ -24,6 +25,6 @@ const VideoSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-})
+}, {timestamps:true} )
 
 export default mongoose.model('Video', VideoSchema)

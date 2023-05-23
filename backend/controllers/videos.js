@@ -16,14 +16,18 @@ export const getVideo = async (req, res) => {
 
 export const postVideo = async (req, res) => {
     try {
-        const { userId, channelName, title, videoUrl, desc } = req.body
-        const newVideo = new Video({ userId, author: channelName, title, videoUrl, desc })
+        const { user, author, title, videoUrl, desc } = req.body
+        const newVideo = new Video({ user, author, title, videoUrl, desc })
         const savedVideo = await newVideo.save()
 
         res.status(202).json({})
     } catch (err) {res.status(501).json({err: err.message})}
 }
 
-export const getUserVideos = () => {
-    
+export const getUserVideos = async (req, res) => {
+    try {
+        const userId = req.params.userId
+        const userVideos = await Video.find({ user: userId })
+        res.status(202).json(userVideos)
+    } catch (err) { res.status(502).json({err: err.message}) }
 }

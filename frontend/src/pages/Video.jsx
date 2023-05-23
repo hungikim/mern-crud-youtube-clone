@@ -1,6 +1,9 @@
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import YouTube from "../components/YouTube"
 import { useState, useEffect } from "react"
+import css from './css/Video.module.css'
+import { Button } from '../components/styled/Button.styled.js'
+import styled from 'styled-components'
 
 // Can access videoId from URL (~/video/:videoId)
 export default function Video(){
@@ -22,16 +25,42 @@ export default function Video(){
     },[])
 
     return (
-        <div>
+        <div className={css.VideoPage}>
             {video && 
                 <>
-                  <div><YouTube type='video' videoUrl={video.videoUrl}/></div>
-                  <div>Title: {video.title}</div>
-                  <div>Posted by: {video.author}</div>
-                  <div>Description: {video.desc}</div>
-                  <div>Comments: .... (to be implemented)</div>
+                  <YouTube className={css.videoFrame} type='video' videoUrl={video.videoUrl}/>
+                  <h2 className={css.videoTitle}>{video.title}</h2>
+                  <div className={css.videoAuthor}>
+                    <NavLink className={css.videoAuthorIcon} to={`/profile/${video.user}`}>
+                        {video.author[0]}   
+                    </NavLink>
+                    <NavLink className={css.videoAuthorName} to={`/profile/${video.user}`}>
+                        {video.author}
+                    </NavLink>
+                    <SubButton>Subscribe</SubButton>
+                    <span className={css.vidButtons}>
+                        <VidButton>Like/Dislike</VidButton>
+                        <VidButton>Save</VidButton>
+                    </span>
+                  </div>
+                  <div className={css.videoDesc}>
+                    <h4>{video.desc? "Description" : "No Description"} • {new Date(video.createdAt).toLocaleString({dateStyle:"short",timeStyle:"short"})}</h4>
+                    {video.desc && <p>{video.desc}</p>}
+                  </div>
+                  <div className={css.videoComments}>Comments: .... (to be implemented)</div>
                 </>
             }
         </div>
     )
 }
+
+const SubButton = styled(Button)`
+    background-color: rgb(230,230,230);
+    color: gray;
+    cursor: default;
+`
+
+const VidButton = styled(Button)`
+    color: gray;
+    cursor: default;
+`

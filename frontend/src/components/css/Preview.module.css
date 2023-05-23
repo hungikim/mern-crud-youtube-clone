@@ -1,0 +1,37 @@
+.Preview {
+    text-decoration: none;
+}
+
+.channelIconContainer {
+    float: left;
+    padding: 10px;
+}
+
+.channelIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.profileLink {
+    text-decoration: none;
+    color: white;
+}
+
+.title {
+    margin-top: 8px;
+    margin-bottom: 7px;
+
+}
+
+.channelName {
+}
+
+.channelAndDate {
+    margin-bottom: 7px;
+    color: gray;
+}

@@ -6,7 +6,7 @@ export const register = async (req, res) => {
         const { username, channelName, password } = req.body
         const newUser = new User({ username, channelName, password })
         const savedUser = await newUser.save()
-
+        // TODO: Hash password
         res.status(202).json({})
 
     } catch(err) {
@@ -28,6 +28,8 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETKEY)
         delete user.password
+        console.log("Logged In")
+        console.log(user)
         res.status(202).json({ token, user })
     } catch (err) { res.status(400).json({ err: err.message })}
 }

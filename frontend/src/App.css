@@ -1,0 +1,7 @@
+.Content {
+    position: absolute;
+    margin-top: 4rem;
+    margin-left: 12rem;
+    padding: 2vw;
+    overflow: scroll;
+}

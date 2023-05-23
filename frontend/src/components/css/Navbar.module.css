@@ -1,0 +1,107 @@
+/* ---- HORIZONTAL NAVBAR ---- */
+.HorizontalNavbar {
+    position: fixed;
+    display: flex;
+    height: 4rem;
+    background-color: var(--navbar-bg-color);
+    width: 100%;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4vw 0 4vw;
+    gap: 1vw;
+    border-bottom: 1px solid rgb(70,70,70);
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.logo a h1 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    font-weight: 700;
+}
+
+.searchBar {
+    font-size: 1rem;
+    background-color: #000;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960"><path fill="gray" d="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    color: rgb(230,230,230);
+    width: 40rem;
+    height: 2.7rem;
+    padding: 0 2rem;
+    border: 1px solid rgb(70,70,70);
+    border-radius: 2.7rem;
+}
+.searchBar:focus {
+    outline: none;
+    border: 2px solid rgb(70,70,70);
+    box-shadow: 2px 2px 4px rgb(0,0,0);
+}
+.searchBar::placeholder {
+    color: rgb(150,150,150);
+}
+
+.navRight {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile {
+    position: relative;
+}
+.profileItem {
+    padding: 6px 12px;
+    background-color: rgb(155, 89, 89);
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.profileMenu {
+    position: absolute;
+    width: 15rem;
+    top: 2rem;
+    left: -8rem;
+    background: rgb(50,50,50);
+    box-shadow: 0px 0px 4px rgb(0,0,0);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ---- VERTICAL NAVBAR ---- */
+
+.VerticalNavbar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    height: 100%;
+    margin-top: 4rem;
+    background-color: var(--navbar-bg-color);
+    z-index: 1;
+    padding: 2rem 1.5rem;
+    gap: 3vh;
+    border-right: 1px solid rgb(70,70,70);
+}
+
+.VerticalNavbar .navItem {
+    display: flex;
+    align-items: center;
+}
+
+.VerticalNavbar a:not(:first-child) .navItem {
+    color: rgb(100, 100, 100);
+        cursor: default;
+}
+
+.VerticalNavbar .navItem .icon {
+    margin-right: 1rem;
+}

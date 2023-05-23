@@ -5,6 +5,6 @@ import { getUser } from '../controllers/users.js'
 const router = express.Router()
 
 // url prefix: /users
-router.get('/:id', verifyToken, getUser)
+router.get('/:userId', getUser)
 
 export default router

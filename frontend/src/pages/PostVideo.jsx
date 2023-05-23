@@ -19,7 +19,7 @@ export default function PostVideo(){
                 "Content-Type" : "application/json",
                 "Authorization" : `Bearer ${token}`
             },
-            body: JSON.stringify({ userId: user._id, channelName: user.channelName, title, videoUrl, desc })
+                body: JSON.stringify({ user: user._id, author: user.channelName, title, videoUrl, desc })
         }
         const rawResponse = await fetch(fetchUrl, fetchConfig)
         const response = await rawResponse.json()
