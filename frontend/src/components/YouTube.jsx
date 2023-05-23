@@ -1,4 +1,4 @@
-import css from './css/YouTube.module.css'
+import styled from 'styled-components'
 
 export default function YouTube( { type, videoUrl } ){
 
@@ -11,10 +11,23 @@ export default function YouTube( { type, videoUrl } ){
     const youTubeVideoId = youtubeParser(videoUrl)
 
     if (type === 'thumbnail') {
-        return <img className={css.thumbnail} src={`https://img.youtube.com/vi/${youTubeVideoId}/hqdefault.jpg`} width='320px' height='180px' alt='thumbnail'/>
+        return <Thumbnail src={`https://img.youtube.com/vi/${youTubeVideoId}/hqdefault.jpg`} width='320px' height='180px' alt='thumbnail'/>
 
     } else if (type === 'video') {
-        return <iframe className={css.iframe} src={`https://www.youtube.com/embed/${youTubeVideoId}`} allow='fullscreen'></iframe>
+        return <Iframe src={`https://www.youtube.com/embed/${youTubeVideoId}`} allow='fullscreen'></Iframe>
     } else { return (<div>SPECIFY 'THUMBNAIL' OR 'VIDEO' FOR YOUTUBE URL</div>) }
 
 }
+
+const Thumbnail = styled.img`
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+`
+
+const Iframe = styled.iframe`
+    display: block;
+    width: 48vw;
+    height: 27vw;
+    border: none;
+`
