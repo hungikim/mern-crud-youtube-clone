@@ -21,11 +21,12 @@ export default function AllVideos(){
     
     return (
         <div className="AllVideos">
-            {allVideos && 
+            {allVideos &&  
                 allVideos.map( ({ _id, user, author, title, videoUrl }) => 
                     <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
                 )
             }
+            { (allVideos == null || allVideos.length == 0) && <div>There are no videos to display.</div> }
         </div>
     )
 }

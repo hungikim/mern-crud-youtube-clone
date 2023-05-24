@@ -109,7 +109,11 @@
     gap: 3vh;
     border-right: 1px solid rgb(70,70,70);
 }
-
+@media (max-width:768px) {
+    .VerticalNavbar {
+        display: none;
+    }
+}
 .VerticalNavbar .navItem {
     display: flex;
     align-items: center;
