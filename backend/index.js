@@ -6,8 +6,10 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
+import api from './api'
 
 const app = express()
+app.use('/api/v1', api)
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
