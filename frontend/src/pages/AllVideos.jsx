@@ -5,7 +5,7 @@ export default function AllVideos(){
     const [allVideos, setAllVideos] = useState(null)
 
     const getVideos = async () => {
-        const fetchUrl = "http://localhost:3001/videos"
+        const fetchUrl = `${import.meta.env.VITE_API_URL}/videos`
         const fetchConfig = { method: 'GET' }
         const rawResponse = await fetch(fetchUrl, fetchConfig)
         const response = await rawResponse.json()

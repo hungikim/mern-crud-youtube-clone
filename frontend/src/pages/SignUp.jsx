@@ -10,7 +10,7 @@ export default function SignUp(){
 
     const handleSignUpForm = async (e) => {
         e.preventDefault()
-        const fetchUrl = "http://localhost:3001/auth/register"
+        const fetchUrl = `${import.meta.env.VITE_API_URL}/auth/register`
         const fetchConfig = {
             method: "POST",
             headers: {"Content-Type":"application/json"},

@@ -12,7 +12,7 @@ export default function Profile(){
         const controller = new AbortController()
         const signal = controller.signal
 
-        const fetchUrl = `http://localhost:3001/users/${userId}`
+        const fetchUrl = `${import.meta.env.VITE_API_URL}/users/${userId}`
         const fetchConfig = { method: 'GET' }
         fetch(fetchUrl, fetchConfig)
             .then(res=>res.json())

@@ -34,7 +34,7 @@ export default function Video(){
     const deleteVideo = async () => {
         if (!confirm("Are you sure you want to delete this video?")) return
 
-        const fetchUrl = `http://localhost:3001/videos/${videoId}`
+        const fetchUrl = `${import.meta.env.VITE_API_URL}/videos/${videoId}`
         const fetchConfig = {
             method: 'DELETE',
             headers: { 

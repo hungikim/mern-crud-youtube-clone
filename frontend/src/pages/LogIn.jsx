@@ -12,7 +12,7 @@ export default function LogIn(){
 
     const handleLogInForm = async (e) => {
         e.preventDefault()
-        const fetchUrl = "http://localhost:3001/auth/login"
+        const fetchUrl = `${import.meta.env.VITE_API_URL}/auth/login`
         const fetchConfig = {
             method: "POST",
             headers: {"Content-Type":"application/json"},

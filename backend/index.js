@@ -15,7 +15,9 @@ app.use(cors())
 app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
 app.use('/videos', videoRoutes)
-
+app.get('/', (req, res) => {
+    res.send("HungiTube Backend Node Server")
+})
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

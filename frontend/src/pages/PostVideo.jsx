@@ -14,7 +14,7 @@ export default function PostVideo(){
 
     const handlePostVideoForm = async (e) => {
         e.preventDefault()
-        const fetchUrl = "http://localhost:3001/videos"
+        const fetchUrl = `${import.meta.env.VITE_API_URL}/videos`
         const fetchConfig = {
             method: 'POST',
             headers: {
