@@ -25,3 +25,5 @@ mongoose.connect(process.env.MONGODB_URL, {
     else PORT=4001
     app.listen(PORT, ()=>console.log(`Server listening on PORT ${PORT} ...`))
 }).catch((err)=>console.log(`${err}; DID NOT CONNECT`))
+
+export default app
