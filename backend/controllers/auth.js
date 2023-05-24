@@ -1,12 +1,15 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 export const register = async (req, res) => {
     try {
         const { username, channelName, password } = req.body
-        const newUser = new User({ username, channelName, password })
+
+        const salt = await bcrypt.genSalt()
+        const hashedPassword = await bcrypt.hash(password, salt)
+        const newUser = new User({ username, channelName, password: hashedPassword })
         const savedUser = await newUser.save()
-        // TODO: Hash password
         res.status(202).json({})
 
     } catch(err) {
@@ -23,7 +26,7 @@ export const login = async (req, res) => {
         const user = await User.findOne({ username: username })
         if (!user) return res.status(500).send({ err: "User Not Found" })
 
-        const isMatch = (password === user.password)
+        const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(500).send({ err: "Incorrect Password"})
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETKEY)
