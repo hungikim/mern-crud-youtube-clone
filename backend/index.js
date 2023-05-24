@@ -6,7 +6,6 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
-import bodyParser from 'body-parser'
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -21,6 +20,8 @@ mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(()=>{
-    const PORT = process.env.PORT
+    let PORT;
+    if (process.env.PORT) PORT=process.env.PORT
+    else PORT=4001
     app.listen(PORT, ()=>console.log(`Server listening on PORT ${PORT} ...`))
 }).catch((err)=>console.log(`${err}; DID NOT CONNECT`))
