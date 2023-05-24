@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
+import { styled } from "styled-components"
 
 export default function PostVideo(){
     const [title, setTitle] = useState("")
@@ -19,7 +21,7 @@ export default function PostVideo(){
                 "Content-Type" : "application/json",
                 "Authorization" : `Bearer ${token}`
             },
-                body: JSON.stringify({ user: user._id, author: user.channelName, title, videoUrl, desc })
+            body: JSON.stringify({ user: user._id, author: user.channelName, title, videoUrl, desc })
         }
         const rawResponse = await fetch(fetchUrl, fetchConfig)
         const response = await rawResponse.json()
@@ -30,14 +32,26 @@ export default function PostVideo(){
     }
 
     return (
-        <div>
-            PostVideo
-            <form onSubmit={handlePostVideoForm}>
-                <label>Title<input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} /></label><br/>
-                <label>Link to YouTube Video<input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} /></label><br/>
-                <label>Description<input type="text" name="desc" value={desc} onChange={e=>setDesc(e.target.value)} /></label><br/>
-                <button>Submit</button>
-            </form>
-        </div>
+        <PostPage>
+            <FormTitle>PostVideo</FormTitle>
+            <Form onSubmit={handlePostVideoForm}>
+                <Label>
+                    <InputName>Title</InputName>
+                    <Input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} />
+                </Label>
+                <Label>
+                    <InputName>Link to <br/>YouTube Video</InputName>
+                    <Input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} />
+                </Label>
+                <Label>
+                    <InputName>Description</InputName>
+                    <Input type="text" name="desc" value={desc} onChange={e=>setDesc(e.target.value)} />
+                </Label>
+                <FormButton>Submit</FormButton>
+            </Form>
+        </PostPage>
     )
 }
+
+const PostPage = styled(FormPage)`
+`

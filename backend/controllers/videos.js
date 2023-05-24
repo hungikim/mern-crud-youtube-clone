@@ -31,3 +31,18 @@ export const getUserVideos = async (req, res) => {
         res.status(202).json(userVideos)
     } catch (err) { res.status(502).json({err: err.message}) }
 }
+
+export const deleteVideo = async (req, res) => {
+    try {
+        const user = req.body.user
+        const video = await Video.findById(req.params.videoId)
+        if (video.user != user._id) {
+            console.log(`User: ${user._id}, Author: ${video.user}`)
+            return res.status(502).json({err: "User doesn't match the author"})
+        }
+        else {
+            await video.deleteOne()
+            res.status(202).json({})
+        }
+    } catch (err) { res.status(502).json({err: err.message}) }
+}

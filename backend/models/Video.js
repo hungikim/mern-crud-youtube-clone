@@ -9,8 +9,8 @@ const VideoSchema = mongoose.Schema({
     title: { // video title
         type: String,
         required: true,
-        min: 2,
-        max: 40
+        minLength: 2,
+        maxLength: 40
     },
     author: { // user's channel name
         type: String,
@@ -20,7 +20,10 @@ const VideoSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    desc: String,
+    desc: {
+        type: String,
+        maxLength: 50
+    },
     views: {
         type: Number,
         default: 0
