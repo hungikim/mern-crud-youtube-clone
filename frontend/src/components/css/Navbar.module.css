@@ -113,6 +113,9 @@
     .VerticalNavbar {
         display: none;
     }
+    .HorizontalNavbar {
+        width: 100vw;
+    }
 }
 .VerticalNavbar .navItem {
     display: flex;
