@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setLogin } from "../state/authSlice"
+import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
 
 export default function LogIn(){
     const navigate = useNavigate()
@@ -31,14 +32,20 @@ export default function LogIn(){
     }
 
     return (
-        <div>
-            LogIn
-            <form onSubmit={handleLogInForm}>
-                <label>Username<input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} /></label><br/>
-                <label>Password<input type="text" name="password" value={password} onChange={e=>setPassword(e.target.value)} /></label><br/>
-                <button>Submit</button>
-            </form>
+        <FormPage>
+            <FormTitle>Log In</FormTitle>
+            <Form onSubmit={handleLogInForm}>
+                <Label>
+                    <InputName>Username</InputName>
+                    <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} />
+                </Label>
+                <Label>
+                    <InputName>Password</InputName>
+                    <Input type="text" name="password" value={password} onChange={e=>setPassword(e.target.value)} />
+                </Label>
+                <FormButton>Log In</FormButton>
+            </Form>
 
-        </div>
+        </FormPage>
     )
 }

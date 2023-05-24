@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
 
 export default function SignUp(){
     const navigate = useNavigate()
@@ -28,15 +29,24 @@ export default function SignUp(){
     }
 
     return (
-        <div>
-            SignUp
-            <form onSubmit={handleSignUpForm}>
-                <label>Username<input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} /></label><br/>
-                <label>Channel Name<input type="text" name="channelName" value={channelName} onChange={e=>setChannelName(e.target.value)} /></label><br/>
-                <label>Password<input type="text" name="password" value={password} onChange={e=>setPassword(e.target.value)} /></label><br/>
-                <button>Submit</button>
-            </form>
+        <FormPage>
+            <FormTitle>Sign Up</FormTitle>
+            <Form onSubmit={handleSignUpForm}>
+                <Label>
+                    <InputName>Username</InputName>
+                    <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} />
+                </Label>
+                <Label>
+                    <InputName>Channel Name</InputName>
+                    <Input type="text" name="channelName" value={channelName} onChange={e=>setChannelName(e.target.value)} />
+                </Label>
+                <Label>
+                    <InputName>Password</InputName>
+                    <Input type="text" name="password" value={password} onChange={e=>setPassword(e.target.value)} />
+                </Label>
+                <FormButton>Sign Up</FormButton>
+            </Form>
 
-        </div>
+        </FormPage>
     )
 }

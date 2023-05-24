@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import UserVideosPreview from "../components/UserVideosPreview.jsx"
+import styled from 'styled-components'
 
 // Can access userId from URL (~/profile/:userId)
 export default function Profile(){
@@ -21,18 +22,50 @@ export default function Profile(){
         return () => controller.abort()
     },[])
     return (
-        <div>
-            <div>Profile</div>
-            {user && 
+        <ProfilePage>
+          {user && 
             <>
-                <div>Channel Name: {user.channelName}</div>
-                <div>Username: {user.username}</div>
-                <div>
-                    {user.channelName}'s videos:
-                    <UserVideosPreview userId={userId}/>
-                </div>
+              <Heading>
+                <ProfileBubble>{user.channelName}</ProfileBubble>
+                <ChannelTitle>{user.channelName}'s Channel</ChannelTitle>
+                <Username>Username: {user.username}</Username>
+              </Heading>
+              <VideosHeading>{user.channelName}'s videos:</VideosHeading>
+              <UserVideosPreview userId={userId}/>
             </>
-            }
-        </div>
+          }
+        </ProfilePage>
     )
 }
+
+const ProfilePage = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`
+const Heading = styled.div`
+    align-items: center;
+    gap: 1rem;
+`
+const ProfileBubble = styled.h1`
+    display: inline;
+    padding: 8px 14px;
+    font-size: 1.5em;
+    background-color: rgb(155, 89, 89);
+    border-radius: 2rem;
+`
+
+const ChannelTitle = styled.h2`
+    display: inline;
+    margin: 0 1rem;
+`
+
+const Username = styled.h2`
+    font-size: 1em;
+    font-weight: normal;
+    display: inline;
+`
+
+const VideosHeading = styled.h4`
+    margin-top: 2rem;
+`
