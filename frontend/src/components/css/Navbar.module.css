@@ -114,6 +114,7 @@
         display: none;
     }
     .HorizontalNavbar {
+        position: relative;
         width: 100vw;
     }
 }
