@@ -71,7 +71,7 @@ export default function Video(){
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill='gray' d="M120-330v-60h300v60H120Zm0-165v-60h470v60H120Zm0-165v-60h470v60H120Zm530 500v-170H480v-60h170v-170h60v170h170v60H710v170h-60Z"/></svg>
                         </VidButton>
                         {/* Show Edit / Delete Buttons when the logged in user is the author of the video */}
-                        {(user._id == video.user) && (
+                        {(user && (user._id == video.user)) && (
                             <>
                             <ActiveButton onClick={updateVideo}>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill='var(--main-color)' d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l41.823-41.823Q725-853 750.5-852.5T793-835l43 43q17 17 17 42t-16.963 41.963L794-666ZM150.327-120q-12.889 0-21.608-8.714Q120-137.429 120-150.311v-85.627Q120-242 122-247q2-5 7-10l495-495 128 128-495 495q-5 5-10.217 7-5.218 2-10.783 2h-85.673ZM645-645l-22-22 44 44-22-22Z"/></svg>
