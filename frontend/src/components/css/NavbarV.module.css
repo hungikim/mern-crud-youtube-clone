@@ -25,3 +25,9 @@
 .NavbarV .navItem .icon {
     margin-right: 1rem;
 }
+
+@media (max-width: 768px) {
+    .NavbarV {
+        display: none;
+    }
+}
