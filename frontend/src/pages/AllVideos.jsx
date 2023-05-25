@@ -27,11 +27,14 @@ export default function AllVideos(){
                 )
             }
             { (allVideos == null || allVideos.length == 0) && 
-              <>
-              <div>If you don't see any data on this website, please just check back within a minute.</div>
-              <div>This website is hosted with a free plan where the server only wakes up when there is a new request.</div>
-              <div>If you still don't see anything, then there's no videos posted.</div>
-              </>
+            
+                <div>
+                    Loading ... <br/>
+                    <br/>
+                    If you don't see any data on this website, please just check back within a minute.<br/>
+                    This website is hosted with a free plan where the server only wakes up when there is a new request.<br/>
+                    If you still don't see anything, then there's no videos posted.<br/>
+                </div>
             }
         </div>
     )
