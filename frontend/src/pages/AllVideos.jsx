@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Preview from '../components/Preview.jsx'
+import styled from 'styled-components'
 
 export default function AllVideos(){
     const [allVideos, setAllVideos] = useState(null)
@@ -20,7 +21,7 @@ export default function AllVideos(){
 
     
     return (
-        <div className="AllVideos">
+        <AllVideosPage className="AllVideos">
             {allVideos &&  
                 allVideos.map( ({ _id, user, author, title, videoUrl }) => 
                     <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
@@ -36,6 +37,10 @@ export default function AllVideos(){
                     If you still don't see anything, then there's no videos posted.<br/>
                 </div>
             }
-        </div>
+        </AllVideosPage>
     )
 }
+
+const AllVideosPage = styled.div`
+    display: grid;
+`

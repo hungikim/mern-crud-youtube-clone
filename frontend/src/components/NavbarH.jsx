@@ -49,7 +49,6 @@ export default function NavbarH(){
                 {isProfileMenuOpen && 
                   <div className={css.profileMenu}>
                     <NavLink to='/' onClick={()=>{dispatch(setLogout());alert("You are logged out")}}>Logout</NavLink>
-                    <div>Somediv</div>
                   </div>
                 }
               </span>

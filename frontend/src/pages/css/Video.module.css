@@ -44,3 +44,9 @@
 .videoComments {
 
 }
+
+@media (max-width: 768px) {
+.VideoPage {
+        margin: 0;
+    }
+}

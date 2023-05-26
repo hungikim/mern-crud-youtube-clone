@@ -32,6 +32,24 @@ export const getUserVideos = async (req, res) => {
     } catch (err) { res.status(502).json({err: err.message}) }
 }
 
+export const updateVideo = async (req, res) => {
+    try {
+        const { userId, title, videoUrl, desc } = req.body
+        const video = await Video.findById(req.params.videoId)
+        if (video.user != userId) {
+            console.log(`User: ${userId}, Author: ${video.user}`)
+            return res.status(502).json({err: "User doesn't match the author"})
+        }
+        else {
+            // await update video in moogse
+            video.title = title
+            video.videoUrl = videoUrl
+            video.desc = desc
+            await video.save()
+            res.status(202).json(video)
+        }
+    } catch (err) { res.status(503).json({err: err.message}) }
+}
 export const deleteVideo = async (req, res) => {
     try {
         const user = req.body.user

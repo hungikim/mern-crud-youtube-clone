@@ -9,6 +9,10 @@ export const FormPage = styled.section`
     flex-direction: column;
     gap: 3rem;
     font-size: 1em;
+
+    @media (max-width:768px) {
+        margin: 1rem 0;
+    }
 `
 
 export const FormTitle = styled.h1`
@@ -26,6 +30,10 @@ export const Label = styled.label`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width:768px) {
+        flex-wrap: wrap;
+    }
 `
 
 export const InputName = styled.span`

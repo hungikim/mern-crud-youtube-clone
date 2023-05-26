@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
-import { styled } from "styled-components"
+import styled from "styled-components"
 
 export default function PostVideo(){
     const [title, setTitle] = useState("")
@@ -33,7 +33,7 @@ export default function PostVideo(){
 
     return (
         <PostPage>
-            <FormTitle>PostVideo</FormTitle>
+            <FormTitle>Post Video</FormTitle>
             <Form onSubmit={handlePostVideoForm}>
                 <Label>
                     <InputName>Title</InputName>

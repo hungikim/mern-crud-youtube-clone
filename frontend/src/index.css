@@ -24,9 +24,3 @@ a {
     color: var(--main-color);
 }
 
-@media (max-width:768px) {
-    .NavbarV {
-        display: none;
-    }
-}
-
