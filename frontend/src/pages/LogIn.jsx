@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setLogin } from "../state/authSlice"
-import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
+import { FormPageWrapper, FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
 
 export default function LogIn(){
     const navigate = useNavigate()
@@ -32,20 +32,22 @@ export default function LogIn(){
     }
 
     return (
-        <FormPage>
-            <FormTitle>Log In</FormTitle>
-            <Form onSubmit={handleLogInForm}>
-                <Label>
-                    <InputName>Username</InputName>
-                    <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} required/>
-                </Label>
-                <Label>
-                    <InputName>Password</InputName>
-                    <Input type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
-                </Label>
-                <FormButton>Log In</FormButton>
-            </Form>
+        <FormPageWrapper>
+            <FormPage>
+                <FormTitle>Log In</FormTitle>
+                <Form onSubmit={handleLogInForm}>
+                    <Label>
+                        <InputName>Username</InputName>
+                        <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} required/>
+                    </Label>
+                    <Label>
+                        <InputName>Password</InputName>
+                        <Input type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
+                    </Label>
+                    <FormButton>Log In</FormButton>
+                </Form>
 
-        </FormPage>
+            </FormPage>
+        </FormPageWrapper>
     )
 }

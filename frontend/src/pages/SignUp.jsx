@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
+import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton, FormPageWrapper } from './styled/FormPage.styled.js'
 
 export default function SignUp(){
     const navigate = useNavigate()
@@ -29,24 +29,25 @@ export default function SignUp(){
     }
 
     return (
-        <FormPage>
-            <FormTitle>Sign Up</FormTitle>
-            <Form onSubmit={handleSignUpForm}>
-                <Label>
-                    <InputName>Username</InputName>
-                    <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} required/>
-                </Label>
-                <Label>
-                    <InputName>Channel Name</InputName>
-                    <Input type="text" name="channelName" value={channelName} onChange={e=>setChannelName(e.target.value)} required/>
-                </Label>
-                <Label>
-                    <InputName>Password</InputName>
-                    <Input type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
-                </Label>
-                <FormButton>Sign Up</FormButton>
-            </Form>
-
-        </FormPage>
+        <FormPageWrapper>
+            <FormPage>
+                <FormTitle>Sign Up</FormTitle>
+                <Form onSubmit={handleSignUpForm}>
+                    <Label>
+                        <InputName>Username</InputName>
+                        <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} required/>
+                    </Label>
+                    <Label>
+                        <InputName>Channel Name</InputName>
+                        <Input type="text" name="channelName" value={channelName} onChange={e=>setChannelName(e.target.value)} required/>
+                    </Label>
+                    <Label>
+                        <InputName>Password</InputName>
+                        <Input type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
+                    </Label>
+                    <FormButton>Sign Up</FormButton>
+                </Form>
+            </FormPage>
+        </FormPageWrapper>
     )
 }

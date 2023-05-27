@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from './styled/FormPage.styled.js'
+import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton, FormPageWrapper } from './styled/FormPage.styled.js'
 import styled from "styled-components"
 
 export default function PostVideo(){
@@ -32,24 +32,26 @@ export default function PostVideo(){
     }
 
     return (
-        <PostPage>
-            <FormTitle>Post Video</FormTitle>
-            <Form onSubmit={handlePostVideoForm}>
-                <Label>
-                    <InputName>Title</InputName>
-                    <Input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} required/>
-                </Label>
-                <Label>
-                    <InputName>Link to <br/>YouTube Video</InputName>
-                    <Input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} required/>
-                </Label>
-                <Label>
-                    <InputName>Description</InputName>
-                    <Input type="text" name="desc" value={desc} onChange={e=>setDesc(e.target.value)} />
-                </Label>
-                <FormButton>Submit</FormButton>
-            </Form>
-        </PostPage>
+        <FormPageWrapper>
+            <PostPage>
+                <FormTitle>Post Video</FormTitle>
+                <Form onSubmit={handlePostVideoForm}>
+                    <Label>
+                        <InputName>Title</InputName>
+                        <Input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} required/>
+                    </Label>
+                    <Label>
+                        <InputName>Link to <br/>YouTube Video</InputName>
+                        <Input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} required/>
+                    </Label>
+                    <Label>
+                        <InputName>Description</InputName>
+                        <Input type="text" name="desc" value={desc} onChange={e=>setDesc(e.target.value)} />
+                    </Label>
+                    <FormButton>Submit</FormButton>
+                </Form>
+            </PostPage>
+        </FormPageWrapper>
     )
 }
 
