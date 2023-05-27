@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import css from './css/NavbarH.module.css'
-import { setIsProfileMenuOpen } from '../state/menuSlice.js'
+import { toggleIsProfileMenuVisible } from '../state/menuSlice.js'
 import { Button } from './styled/Button.styled.js'
 import ProfileMenu from './ProfileMenu'
 import { useRef } from 'react'
@@ -10,12 +10,12 @@ import { useOutsideCloser } from '../hooks/useOutsideCloser'
 export default function NavbarH(){
     const user = useSelector(state=>state.auth.user)
     const goToTop = () => scroll(0,0)
-    const isProfileMenuOpen = useSelector(state=>state.menu.isProfileMenuOpen)
+    const isProfileMenuVisible = useSelector(state=>state.menu.isProfileMenuVisible)
     const dispatch = useDispatch()
 
     const profileMenuRef = useRef()
     const profileButtonRef = useRef()
-    useOutsideCloser(profileMenuRef, profileButtonRef, ()=>dispatch(setIsProfileMenuOpen()))
+    useOutsideCloser(profileMenuRef, profileButtonRef, toggleIsProfileMenuVisible)
 
     return (
       <nav className={css.NavbarH}>
@@ -50,10 +50,10 @@ export default function NavbarH(){
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 96 960 960"><path fill="currentColor" d="M445.935 860.065v-250h-250v-68.13h250v-250h68.13v250h250v68.13h-250v250h-68.13Z"/></svg>
               </NavLink>
               <span className={css.profile}>
-                <span className={css.profileItem} onClick={()=>dispatch(setIsProfileMenuOpen())} ref={profileButtonRef}>
+                <span className={css.profileItem} onClick={()=>dispatch(toggleIsProfileMenuVisible())} ref={profileButtonRef}>
                   {user.channelName}
                 </span>
-                {isProfileMenuOpen && <ProfileMenu ref={profileMenuRef}/>}
+                {isProfileMenuVisible && <ProfileMenu ref={profileMenuRef}/>}
               </span>
             </>
           }

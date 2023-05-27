@@ -4,9 +4,10 @@ import { useState, useEffect, useRef } from "react"
 import css from './css/Video.module.css'
 import { Button } from '../components/styled/Button.styled.js'
 import styled from 'styled-components'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import UpdateVideo from "../components/UpdateVideo"
 import { useOutsideCloser } from "../hooks/useOutsideCloser"
+import { setIsUpdateFormVisible, toggleIsUpdateFormVisible } from "../state/updateSlice"
 
 // Can access videoId from URL (~/video/:videoId)
 export default function Video(){
@@ -15,10 +16,10 @@ export default function Video(){
     const navigate = useNavigate()
     const user = useSelector(state=>state.auth.user)
     const token = useSelector(state=>state.auth.token)
-    const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false)
+    const dispatch = useDispatch()
+    const isUpdateFormVisible = useSelector(state=>state.update.isUpdateFormVisible)
     // Reload video everytime it is updated
     const updateTrigger = useSelector(state=>state.update.updateTrigger)
-    const toggleIsUpdateFormVisible = () => setIsUpdateFormVisible(isUpdateFormVisible? false: true)
 
     // Fetch Video
     useEffect(()=>{
@@ -31,7 +32,7 @@ export default function Video(){
             .then(res=>res.json())
             .then(jsonData=>setVideo(jsonData))
             .catch(err=>alert(`Failed to fetch video: ${err}`))
-        setIsUpdateFormVisible(false)
+        dispatch(setIsUpdateFormVisible(false))
 
         return () => controller.abort()
     },[updateTrigger])
@@ -82,7 +83,7 @@ export default function Video(){
                         {/* Show Edit / Delete Buttons when the logged in user is the author of the video */}
                         {(user && (user._id == video.user)) && (
                             <>
-                            <ActiveButton ref={updateButtonRef} onClick={toggleIsUpdateFormVisible}>
+                            <ActiveButton ref={updateButtonRef} onClick={()=>dispatch(toggleIsUpdateFormVisible())}>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill='var(--main-color)' d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l41.823-41.823Q725-853 750.5-852.5T793-835l43 43q17 17 17 42t-16.963 41.963L794-666ZM150.327-120q-12.889 0-21.608-8.714Q120-137.429 120-150.311v-85.627Q120-242 122-247q2-5 7-10l495-495 128 128-495 495q-5 5-10.217 7-5.218 2-10.783 2h-85.673ZM645-645l-22-22 44 44-22-22Z"/></svg>
                                 Edit
                             </ActiveButton>

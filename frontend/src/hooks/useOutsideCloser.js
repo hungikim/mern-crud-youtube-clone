@@ -5,17 +5,19 @@
     buttonRef:    ref to the button that opens/closes the component.
                   it is needed because when you click the button (which is outside of the component) to close the 
                   component you don't want to also trigger the useOutsideCloser.
-    toggleComponentOpen: toggler for the state that determines if the component is open or closed.
+    toggleComponentOpen: redux toggler for the state that determines if the component is open or closed.
 */
 /* @refresh reset */ 
 import { useEffect } from "react"  
+import { useDispatch } from "react-redux"
+
 export function useOutsideCloser(componentRef, buttonRef, toggleComponentOpen){
+    const dispatch = useDispatch()
     useEffect(() => { 
         function handleClickOutside(e) {
         if (componentRef.current && !componentRef.current.contains(e.target) 
                 && (!buttonRef || !buttonRef.current || !buttonRef.current.contains(e.target) )) {
-                    toggleComponentOpen()
-                    console.log('fired toggle')
+                    dispatch(toggleComponentOpen())
         }
         } 
         document.addEventListener("click", handleClickOutside)

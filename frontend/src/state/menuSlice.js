@@ -3,16 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const menuSlice = createSlice({
     name: 'menu',
     initialState: {
-        isProfileMenuOpen: false
+        isProfileMenuVisible: false
     },
     reducers: {
         // Used in UpdateVideo component to fire refresh in Video component
-        setIsProfileMenuOpen: (state) => {
-            state.isProfileMenuOpen = state.isProfileMenuOpen? false: true
+        toggleIsProfileMenuVisible: (state) => {
+            state.isProfileMenuVisible = state.isProfileMenuVisible? false: true
         },
     }
 })
 
-export const { setIsProfileMenuOpen } = menuSlice.actions
+export const { toggleIsProfileMenuVisible } = menuSlice.actions
 
 export default menuSlice.reducer
