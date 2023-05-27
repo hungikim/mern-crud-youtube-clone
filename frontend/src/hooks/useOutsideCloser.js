@@ -8,14 +8,14 @@
     toggleComponentOpen: toggler for the state that determines if the component is open or closed.
 */
 /* @refresh reset */ 
-import { useEffect } from "react"
- 
+import { useEffect } from "react"  
 export function useOutsideCloser(componentRef, buttonRef, toggleComponentOpen){
-    useEffect(() => {
+    useEffect(() => { 
         function handleClickOutside(e) {
         if (componentRef.current && !componentRef.current.contains(e.target) 
                 && (!buttonRef || !buttonRef.current || !buttonRef.current.contains(e.target) )) {
                     toggleComponentOpen()
+                    console.log('fired toggle')
         }
         } 
         document.addEventListener("click", handleClickOutside)
