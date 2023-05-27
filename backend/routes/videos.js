@@ -11,6 +11,4 @@ router.get('/', getAllVideos) // All videos
 router.post('/', verifyToken, postVideo) // Post a video
 router.get('/user/:userId', getUserVideos) // Specific user's videos
 
-//app.patch('/comments/:userId&:videoId')
-
 export default router

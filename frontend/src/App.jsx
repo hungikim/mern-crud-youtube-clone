@@ -7,7 +7,6 @@ import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp'
 import Video from './pages/Video'
 import PostVideo from './pages/PostVideo/'
-import UpdateVideo from './components/UpdateVideo'
 import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
 

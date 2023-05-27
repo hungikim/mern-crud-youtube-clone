@@ -42,9 +42,9 @@ export const updateVideo = async (req, res) => {
         }
         else {
             // await update video in moogse
-            video.title = title
-            video.videoUrl = videoUrl
-            video.desc = desc
+            if (title) video.title = title
+            if (videoUrl) video.videoUrl = videoUrl
+            if (desc) video.desc = desc
             await video.save()
             res.status(202).json(video)
         }

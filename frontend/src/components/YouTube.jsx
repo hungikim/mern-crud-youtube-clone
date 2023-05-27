@@ -19,10 +19,12 @@ export default function YouTube( { type, videoUrl } ){
 
 }
 
-const Thumbnail = styled.img`
+const Thumbnail = styled.img` 
+    aspect-ratio: 16 / 9;
+    width: 100%; height: auto;
     object-fit: cover;
-    display: block;
-    border-radius: 15px;
+    border-radius: 10px;
+
 `
 
 const Iframe = styled.iframe`

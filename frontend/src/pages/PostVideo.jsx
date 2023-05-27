@@ -37,11 +37,11 @@ export default function PostVideo(){
             <Form onSubmit={handlePostVideoForm}>
                 <Label>
                     <InputName>Title</InputName>
-                    <Input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} />
+                    <Input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} required/>
                 </Label>
                 <Label>
                     <InputName>Link to <br/>YouTube Video</InputName>
-                    <Input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} />
+                    <Input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} required/>
                 </Label>
                 <Label>
                     <InputName>Description</InputName>

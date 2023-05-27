@@ -37,11 +37,11 @@ export default function LogIn(){
             <Form onSubmit={handleLogInForm}>
                 <Label>
                     <InputName>Username</InputName>
-                    <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} />
+                    <Input type="text" name="username" value={username} onChange={e=>setUsername(e.target.value)} required/>
                 </Label>
                 <Label>
                     <InputName>Password</InputName>
-                    <Input type="text" name="password" value={password} onChange={e=>setPassword(e.target.value)} />
+                    <Input type="password" name="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
                 </Label>
                 <FormButton>Log In</FormButton>
             </Form>

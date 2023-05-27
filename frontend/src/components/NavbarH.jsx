@@ -1,20 +1,36 @@
 import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { setLogout } from '../state/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import css from './css/NavbarH.module.css'
-import { useState } from 'react'
+import { setIsProfileMenuOpen } from '../state/menuSlice.js'
 import { Button } from './styled/Button.styled.js'
+import ProfileMenu from './ProfileMenu'
+import { useEffect, useRef } from 'react'
 
 export default function NavbarH(){
     const user = useSelector(state=>state.auth.user)
+    const goToTop = () => scroll(0,0)
+    const isProfileMenuOpen = useSelector(state=>state.menu.isProfileMenuOpen)
     const dispatch = useDispatch()
-    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
+
+    const profileMenuRef = useRef()
+    const profileButtonRef = useRef()
+    // Close profile menu when anywhere outside of it is clicked
+    useEffect(() => {
+        function handleClickOutside(e) {
+          if (profileMenuRef.current && !profileMenuRef.current.contains(e.target) 
+                && (!profileButtonRef.current || !profileButtonRef.current.contains(e.target) )) {
+            dispatch(setIsProfileMenuOpen())
+          }
+        }
+        document.addEventListener("click", handleClickOutside)
+        return () => document.removeEventListener("click", handleClickOutside)
+    }, [profileMenuRef])
 
     return (
       <nav className={css.NavbarH}>
 
         <span className={css.logo}>
-          <NavLink to='/'>
+          <NavLink to='/' onClick={goToTop}>
             <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="-35.20005 -41.33325 305.0671 247.9995"><path d="M229.763 25.817c-2.699-10.162-10.65-18.165-20.747-20.881C190.716 0 117.333 0 117.333 0S43.951 0 25.651 4.936C15.554 7.652 7.602 15.655 4.904 25.817 0 44.237 0 82.667 0 82.667s0 38.43 4.904 56.85c2.698 10.162 10.65 18.164 20.747 20.881 18.3 4.935 91.682 4.935 91.682 4.935s73.383 0 91.683-4.935c10.097-2.717 18.048-10.72 20.747-20.88 4.904-18.422 4.904-56.851 4.904-56.851s0-38.43-4.904-56.85" fill="red"/><path d="M93.333 117.558l61.334-34.89-61.334-34.893z" fill="#fff"/></svg>
             <h1>HungiTube</h1>
           </NavLink>
@@ -43,14 +59,10 @@ export default function NavbarH(){
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 96 960 960"><path fill="currentColor" d="M445.935 860.065v-250h-250v-68.13h250v-250h68.13v250h250v68.13h-250v250h-68.13Z"/></svg>
               </NavLink>
               <span className={css.profile}>
-                <span className={css.profileItem} onClick={()=>setIsProfileMenuOpen(isProfileMenuOpen? false : true)}>
+                <span className={css.profileItem} onClick={()=>dispatch(setIsProfileMenuOpen())} ref={profileButtonRef}>
                   {user.channelName}
                 </span>
-                {isProfileMenuOpen && 
-                  <div className={css.profileMenu}>
-                    <NavLink to='/' onClick={()=>{dispatch(setLogout());alert("You are logged out")}}>Logout</NavLink>
-                  </div>
-                }
+                {isProfileMenuOpen && <ProfileMenu ref={profileMenuRef}/>}
               </span>
             </>
           }

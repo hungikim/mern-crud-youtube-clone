@@ -43,4 +43,15 @@ export default function AllVideos(){
 
 const AllVideosPage = styled.div`
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    gap: 1rem;
+
+    > * { // Preview elements
+        /* outline: 1px solid white; */
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+    }
 `
