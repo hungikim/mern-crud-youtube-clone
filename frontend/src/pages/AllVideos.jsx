@@ -21,23 +21,21 @@ export default function AllVideos(){
 
     
     return (
-        <AllVideosPage className="AllVideos">
-            {allVideos &&  
-                allVideos.map( ({ _id, user, author, title, videoUrl }) => 
-                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
-                )
-            }
-            { (allVideos == null || allVideos.length == 0) && 
+        // <AllVideosPage className="AllVideos">
+        //     {allVideos &&  
+        //         allVideos.map( ({ _id, user, author, title, videoUrl }) => 
+        //             <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
+        //         )
+        //     }
+        //     { (allVideos == null || allVideos.length == 0) && 
             
-                <div>
-                    Loading ... <br/>
-                    <br/>
-                    If you don't see any data on this website, please just check back within a minute.<br/>
-                    This website is hosted with a free plan where the server only wakes up when there is a new request.<br/>
-                    If you still don't see anything, then there's no videos posted.<br/>
-                </div>
-            }
-        </AllVideosPage>
+                <Loading>
+                    <h1>Loading ...</h1>
+                    <p>Server is waking up ...</p>
+                    <p>Please allow up to a minute.</p>
+                </Loading>
+        //     }
+        // </AllVideosPage>
     )
 }
 
@@ -53,5 +51,16 @@ const AllVideosPage = styled.div`
     @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
+    }
+`
+
+const Loading = styled.div`
+    padding: 1rem;
+
+    h1 {
+        margin-bottom: 1.5rem;
+    }
+    p {
+        padding: 0.5rem 0;
     }
 `
