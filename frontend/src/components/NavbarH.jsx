@@ -4,7 +4,8 @@ import css from './css/NavbarH.module.css'
 import { setIsProfileMenuOpen } from '../state/menuSlice.js'
 import { Button } from './styled/Button.styled.js'
 import ProfileMenu from './ProfileMenu'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
+import { useOutsideCloser } from '../hooks/useOutsideCloser'
 
 export default function NavbarH(){
     const user = useSelector(state=>state.auth.user)
@@ -14,17 +15,7 @@ export default function NavbarH(){
 
     const profileMenuRef = useRef()
     const profileButtonRef = useRef()
-    // Close profile menu when anywhere outside of it is clicked
-    useEffect(() => {
-        function handleClickOutside(e) {
-          if (profileMenuRef.current && !profileMenuRef.current.contains(e.target) 
-                && (!profileButtonRef.current || !profileButtonRef.current.contains(e.target) )) {
-            dispatch(setIsProfileMenuOpen())
-          }
-        }
-        document.addEventListener("click", handleClickOutside)
-        return () => document.removeEventListener("click", handleClickOutside)
-    }, [profileMenuRef])
+    useOutsideCloser(profileMenuRef, profileButtonRef, ()=>dispatch(setIsProfileMenuOpen()))
 
     return (
       <nav className={css.NavbarH}>

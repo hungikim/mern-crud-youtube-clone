@@ -23,8 +23,8 @@ export default function AllVideos(){
     return (
         <AllVideosPage className="AllVideos">
             {allVideos &&  
-                allVideos.map( ({ _id, user, author, title, videoUrl }) => 
-                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
+                allVideos.map( ({ _id, user, author, title, videoUrl, updatedAt }) => 
+                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} updatedAt={updatedAt}/>
                 )
             }
             { (allVideos == null || allVideos.length == 0) && 

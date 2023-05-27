@@ -25,7 +25,6 @@ export default function LogIn(){
             alert("Sign in failed")
             alert(`Error: ${response.err}`)
         } else {
-            alert("Sign in success")
             dispatch(setLogin({ token: response.token, user: response.user }))
             navigate('/')
         }

@@ -41,7 +41,7 @@ export const Label = styled.label`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    gap: 20px;
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: start;

@@ -2,7 +2,9 @@ import { NavLink } from 'react-router-dom'
 import YouTube from './YouTube.jsx'
 import css from './css/Preview.module.css'
 
-export default function Preview ({ videoId, userId, author, title, videoUrl }) {
+export default function Preview ({ videoId, userId, author, title, videoUrl, updatedAt }) {
+    const updatedDate = new Date(updatedAt).toLocaleDateString('en-CA', {day:"numeric", month:"long", year:"numeric"})
+
     return (
         <div className={css.Preview}>
             <NavLink to={`/video/${videoId}`}>
@@ -20,7 +22,8 @@ export default function Preview ({ videoId, userId, author, title, videoUrl }) {
                     <div className={css.title}>{title}</div>
                     <div className={css.channelAndDate}>
                         <span className={css.channelName}>{author}</span>
-                        <span className={css.date}> • 3 sdfsas ago</span>
+                        <span> • </span>
+                        <span className={css.date}>{updatedDate}</span>
                     </div>
                 </div>
             </div>

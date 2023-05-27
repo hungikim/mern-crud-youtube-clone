@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 export const updateSlice = createSlice({
     name: 'update',
     initialState: {
-        updateToggler: false
+        updateTrigger: false
     },
     reducers: {
         // Used in UpdateVideo component to fire refresh in Video component
         refreshVideo: (state) => {
-            state.updateToggler = !(state.updateToggler)
+            state.updateTrigger = !(state.updateTrigger)
         },
     }
 })

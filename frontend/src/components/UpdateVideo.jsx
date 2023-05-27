@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState, forwardRef } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { FormPage, FormTitle, Form, Label, InputName, Input, FormButton } from '../pages/styled/FormPage.styled.js'
 import styled from "styled-components"
 import { refreshVideo } from "../state/updateSlice.js"
 
-export default function UpdateVideo({ videoId, originalTitle, originalUrl, originalDesc, userId, token }){
+const UpdateVideo = forwardRef( function UpdateVideo({ videoId, originalTitle, originalUrl, originalDesc, userId, token }, ref){
     const [title, setTitle] = useState(originalTitle)
     const [videoUrl, setVideoUrl] = useState(originalUrl)
     const [desc, setDesc] = useState(originalDesc)
@@ -34,9 +34,9 @@ export default function UpdateVideo({ videoId, originalTitle, originalUrl, origi
         }
 
     }
-
+    
     return (
-        <FormPage>
+        <UpdatePage ref={ref}>
             <FormTitle>Update Video</FormTitle>
             <Form onSubmit={handleUpdateVideoForm}>
                 <Label>
@@ -53,6 +53,22 @@ export default function UpdateVideo({ videoId, originalTitle, originalUrl, origi
                 </Label>
                 <FormButton>Submit</FormButton>
             </Form>
-        </FormPage>
+        </UpdatePage>
     )
-}
+})
+export default UpdateVideo
+
+const UpdatePage = styled(FormPage)`
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    z-index: 2;
+    width: auto; height: auto;
+    padding: 60px;
+    gap: 8vh;
+    background-color: var(--ui-bg-color);
+    border-radius: 20px;
+    box-shadow: 0px 0px 1000px 700px black;
+
+    h1 { padding: 0;}
+    button { margin-top: 10px;}
+`
