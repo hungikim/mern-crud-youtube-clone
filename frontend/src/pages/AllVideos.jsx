@@ -21,21 +21,21 @@ export default function AllVideos(){
 
     
     return (
-        // <AllVideosPage className="AllVideos">
-        //     {allVideos &&  
-        //         allVideos.map( ({ _id, user, author, title, videoUrl }) => 
-        //             <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
-        //         )
-        //     }
-        //     { (allVideos == null || allVideos.length == 0) && 
+        <AllVideosPage className="AllVideos">
+            {allVideos &&  
+                allVideos.map( ({ _id, user, author, title, videoUrl }) => 
+                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl}/>
+                )
+            }
+            { (allVideos == null || allVideos.length == 0) && 
             
                 <Loading>
                     <h1>Loading ...</h1>
                     <p>Server is waking up ...</p>
                     <p>Please allow up to a minute.</p>
                 </Loading>
-        //     }
-        // </AllVideosPage>
+            }
+        </AllVideosPage>
     )
 }
 
