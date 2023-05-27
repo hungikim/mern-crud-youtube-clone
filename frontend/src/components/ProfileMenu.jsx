@@ -3,13 +3,20 @@ import { setLogout } from '../state/authSlice'
 import { useDispatch } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { forwardRef } from "react"
+import { setIsProfileMenuOpen } from "../state/menuSlice"
 
 const ProfileMenu = forwardRef( function ProfileMenu (props, ref) {
     const dispatch = useDispatch()
 
     return (
         <Menu ref={ref}>
-            <NavLink to='/' onClick={()=>{dispatch(setLogout());alert("You are logged out")}}>Logout</NavLink>
+            <NavLink to='/' onClick={()=>{
+                dispatch(setLogout())
+                alert("You are logged out")
+                dispatch(setIsProfileMenuOpen())
+            }}>
+                Logout
+            </NavLink>
         </Menu>
     )
 } )
@@ -29,4 +36,9 @@ const Menu = styled.div`
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
+
+    @media (max-width: 768px){
+        right: 0;
+        transform: none;
+    }
 `

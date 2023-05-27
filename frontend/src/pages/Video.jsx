@@ -91,7 +91,7 @@ export default function Video(){
                     <h4>{video.desc? "Description" : "No Description"} • {new Date(video.createdAt).toLocaleString({dateStyle:"short",timeStyle:"short"})}</h4>
                     {video.desc && <p>{video.desc}</p>}
                   </div>
-                  <div className={css.videoComments}>Comments: .... (to be implemented)</div>
+                  <div className={css.videoComments}>Comments: ....</div>
                 </>
             }
             {isUpdateFormVisible && 

@@ -29,7 +29,11 @@ const Thumbnail = styled.img`
 
 const Iframe = styled.iframe`
     display: block;
-    width: 48vw;
-    height: 27vw;
+    aspect-ratio: 16 / 9;
+    width: 64vw; height: auto;
     border: none;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
