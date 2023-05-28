@@ -96,7 +96,7 @@ export default function Video(){
                     </span>
                   </div>
                   <div className={css.videoDesc}>
-                    <h4>{video.desc? "Description" : "No Description"} • {new Date(video.createdAt).toLocaleString({dateStyle:"short",timeStyle:"short"})}</h4>
+                    <h4>{video.desc? "Description" : "No Description"} • {new Date(video.updatedAt).toLocaleString({dateStyle:"short",timeStyle:"short"})}</h4>
                     {video.desc && <p>{video.desc}</p>}
                   </div>
                   <div className={css.videoComments}>Comments: ....</div>

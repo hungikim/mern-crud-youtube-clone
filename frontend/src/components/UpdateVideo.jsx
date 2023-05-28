@@ -67,8 +67,12 @@ const UpdatePage = styled(FormPage)`
     gap: 8vh;
     background-color: var(--ui-bg-color);
     border-radius: 20px;
-    box-shadow: 0px 0px 1000px 700px black;
+    box-shadow: 0px 0px 900px 700px black;
 
     h1 { padding: 0;}
     button { margin-top: 10px;}
+
+    @media (max-width: 768px) {
+        top: 1rem;
+    }
 `

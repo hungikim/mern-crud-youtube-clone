@@ -21,7 +21,7 @@ export default function AllVideos(){
 
     
     return (
-        <AllVideosPage className="AllVideos">
+        <AllVideosPage>
             {allVideos &&  
                 allVideos.map( ({ _id, user, author, title, videoUrl, updatedAt }) => 
                     <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} updatedAt={updatedAt}/>
@@ -39,7 +39,7 @@ export default function AllVideos(){
     )
 }
 
-const AllVideosPage = styled.div`
+export const AllVideosPage = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
     gap: 1rem 1rem;

@@ -30,8 +30,11 @@ export default function Profile(){
                 <ChannelTitle>{user.channelName}'s Channel</ChannelTitle>
                 <Username>Username: {user.username}</Username>
               </Heading>
-              <VideosHeading>{user.channelName}'s videos:</VideosHeading>
+              <VideosHeading>
+                {user.channelName}'s videos:
+              </VideosHeading>
               <UserVideosPreview userId={userId}/>
+              
             </>
           }
         </ProfilePage>
@@ -42,10 +45,18 @@ const ProfilePage = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    @media (max-width: 768px) {
+        margin-top: 10px;
+        gap: 0;
+    }
 `
 const Heading = styled.div`
-    align-items: center;
-    gap: 1rem;
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 5px;
+    }
 `
 const ProfileBubble = styled.h1`
     display: inline;
@@ -58,14 +69,21 @@ const ProfileBubble = styled.h1`
 const ChannelTitle = styled.h2`
     display: inline;
     margin: 0 1rem;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 const Username = styled.h2`
     font-size: 1em;
     font-weight: normal;
     display: inline;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 const VideosHeading = styled.h4`
     margin-top: 2rem;
+    margin-bottom: 1rem;
 `

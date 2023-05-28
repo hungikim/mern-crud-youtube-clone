@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import Preview from './Preview.jsx'
+import styled from 'styled-components'
+import { AllVideosPage } from '../pages/AllVideos.jsx' 
 
 export default function UserVideosPreview ({ userId }) {
     const [userVideos, setUserVideos] = useState(null)
@@ -16,12 +18,16 @@ export default function UserVideosPreview ({ userId }) {
     }, [userId])
 
     return (
-        <div>
+        <AllVideosPage>
             {userVideos &&
-                userVideos.map( ({ _id, user, author, title, videoUrl }) =>
-                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} />
+                userVideos.map( ({ _id, user, author, title, videoUrl, updatedAt }) =>
+                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} updatedAt={updatedAt} />
                 )
             }
-        </div>
+        </AllVideosPage>
     )
 }
+
+const UserVideos = styled.div`
+    
+`
