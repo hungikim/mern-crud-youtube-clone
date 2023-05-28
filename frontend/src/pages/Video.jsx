@@ -63,13 +63,13 @@ export default function Video(){
         <div className={css.VideoPage}>
             {video && 
                 <>
-                  <YouTube className={css.videoFrame} type='video' videoUrl={video.videoUrl}/>
-                  <h2 className={css.videoTitle}>{video.title}</h2>
-                  <div className={css.videoAuthor}>
-                    <NavLink className={css.videoAuthorIcon} to={`/profile/${video.user}`}>
+                  <YouTube type='video' videoUrl={video.videoUrl}/>
+                  <h2 className={css.title}>{video.title}</h2>
+                  <div className={css.author}>
+                    <NavLink className={css.authorIcon} to={`/profile/${video.user}`}>
                         {video.author[0]}   
                     </NavLink>
-                    <NavLink className={css.videoAuthorName} to={`/profile/${video.user}`}>
+                    <NavLink className={css.authorName} to={`/profile/${video.user}`}>
                         {video.author}
                     </NavLink>
                     <SubButton>Subscribe</SubButton>
@@ -95,11 +95,13 @@ export default function Video(){
                         )}
                     </span>
                   </div>
-                  <div className={css.videoDesc}>
-                    <h4>{video.desc? "Description" : "No Description"} • {new Date(video.updatedAt).toLocaleString({dateStyle:"short",timeStyle:"short"})}</h4>
+                  <div className={css.desc}>
+                    <h4>
+                        {video.desc? "Description" : "No Description"} • Updated at {new Date(video.updatedAt).toLocaleString({dateStyle:"short",timeStyle:"short"})} • {video.views} views
+                    </h4>
                     {video.desc && <p>{video.desc}</p>}
                   </div>
-                  <div className={css.videoComments}>Comments: ....</div>
+                  <div className={css.comments}>Comments: ....</div>
                 </>
             }
             {isUpdateFormVisible && 

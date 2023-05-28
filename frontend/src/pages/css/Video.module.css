@@ -9,18 +9,18 @@
     .VideoPage { padding: 0; }
 }
 
-.videoTitle {
+.title {
 }
 
-.videoAuthor {
+.author {
     display: flex;
     align-items: center;
     gap: 15px;
     overflow: scroll;
 }
-.videoAuthor > * { flex: 0 0 auto; }
+.author > * { flex: 0 0 auto; }
 
-.videoAuthorIcon {
+.authorIcon {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -35,19 +35,19 @@
     gap: 15px;
     margin-left: auto;
 }
-.videoDesc {
+.desc {
     background: var(--ui-bg-color);
     border-radius: 1rem;
     padding: 1rem;
 }
-.videoDesc h4 {
+.desc h4 {
     font-size: 0.8rem;
 }
-.videoDesc p {
+.desc p {
     margin-top: 1rem;
 }
 
-.videoComments {
+.comments {
     font-size: 1.1rem;
 }
 
