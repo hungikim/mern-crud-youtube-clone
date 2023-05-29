@@ -30,7 +30,7 @@ export default function Video(){
             const fetchConfig = { method: 'GET' }
             const rawResponse = await fetch(fetchUrl, fetchConfig)
             const response = await rawResponse.json()
-            if (!response.err) setVideo(response)
+            setVideo(response)
         }
         fetchVideo()
           .catch(err=>{console.log(err);alert(`Failed to fetch video: ${err}`);})
@@ -64,7 +64,7 @@ export default function Video(){
 
     return (
         <div className={css.VideoPage}>
-            {video?
+            {video && !video.err && 
                 <>
                   <YouTube type='video' videoUrl={video.videoUrl}/>
                   <h2 className={css.title}>{video.title}</h2>
@@ -106,12 +106,9 @@ export default function Video(){
                   </div>
                   <div className={css.comments}>Comments: ....</div>
                 </>
-                
-                : // Load fail
-                <>
-                <div>Failed to load video</div>
-                </>
             }
+            { !video && <div>Loading ...</div>}
+            { video && video.err && <div>Failed to load video</div> }
             {isUpdateFormVisible && 
               <UpdateVideo ref={updateRef} videoId={videoId} originalTitle={video.title} originalUrl={video.videoUrl} originalDesc={video.desc} userId={user._id} token={token} />
             }
