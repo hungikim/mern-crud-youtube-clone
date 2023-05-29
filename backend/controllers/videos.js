@@ -2,7 +2,7 @@ import Video from '../models/Video.js'
 
 export const getAllVideos = async (req, res) => {
     try {
-        const videos = await Video.find().sort({updatedAt: "descending"})
+        const videos = await Video.find().sort({createdAt: "descending"})
         res.status(200).json(videos)
     } catch (err) {res.status(502).json({err: err.message})}
 }

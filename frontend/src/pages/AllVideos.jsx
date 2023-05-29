@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Preview from '../components/Preview.jsx'
 import styled from 'styled-components'
+import { useSelector } from "react-redux"
 
 export default function AllVideos(){
     const [allVideos, setAllVideos] = useState(null)
@@ -19,12 +20,17 @@ export default function AllVideos(){
         getVideos()
     }, [allVideos])
 
-    
+    const searchText = useSelector(state=>state.menu.searchText)
+    useEffect(()=>{
+        console.log(searchText)
+    }, [searchText])
     return (
         <AllVideosPage>
             {allVideos &&  
-                allVideos.map( ({ _id, user, author, title, videoUrl, updatedAt }) => 
-                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} updatedAt={updatedAt}/>
+                allVideos.map( ({ _id, user, author, title, videoUrl, createdAt }) => 
+                    ( (title.toLowerCase().includes(searchText.toLowerCase()) || author.toLowerCase().includes(searchText.toLowerCase())) && 
+                        <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} createdAt={createdAt}/>
+                    )
                 )
             }
             { (allVideos == null || allVideos.length == 0) && 

@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom'
 import YouTube from './YouTube.jsx'
 import css from './css/Preview.module.css'
 
-export default function Preview ({ videoId, userId, author, title, videoUrl, updatedAt }) {
-    const updatedDate = new Date(updatedAt).toLocaleDateString('en-CA', {day:"numeric", month:"long", year:"numeric"})
+export default function Preview ({ videoId, userId, author, title, videoUrl, createdAt }) {
+    const createdDate = new Date(createdAt).toLocaleDateString('en-CA', {day:"numeric", month:"long", year:"numeric"})
 
     return (
         <div className={css.Preview}>
@@ -23,7 +23,7 @@ export default function Preview ({ videoId, userId, author, title, videoUrl, upd
                     <div className={css.channelAndDate}>
                         <span className={css.channelName}>{author}</span>
                         <span> • </span>
-                        <span className={css.date}>{updatedDate}</span>
+                        <span className={css.date}>{createdDate}</span>
                     </div>
                 </div>
             </div>

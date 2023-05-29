@@ -100,7 +100,7 @@ export default function Video(){
                   </div>
                   <div className={css.desc}>
                     <h4>
-                        {video.desc? "Description" : "No Description"} • Updated at {new Date(video.updatedAt).toLocaleString({dateStyle:"short",timeStyle:"short"})} • {video.views} views
+                        {video.desc? "Description" : "No Description"} • Created at {new Date(video.createdAt).toLocaleString({dateStyle:"short",timeStyle:"short"})} • {video.views} views
                     </h4>
                     {video.desc && <p>{video.desc}</p>}
                   </div>
