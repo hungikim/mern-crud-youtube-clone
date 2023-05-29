@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 export default function YouTube( { type, videoUrl } ){
 
-    function youtubeParser(url){ // Parse youtube video ID from link url; source: https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url
-        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+function youtubeParser(url){ // Parse youtube video ID from link url; source: https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url / https://stackoverflow.com/questions/75330340/how-to-get-youtube-videoid-from-url
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(shorts\/)|(watch\?))\??v?=?([^#&?]*).*/;
         var match = url.match(regExp);
-        return (match&&match[7].length==11)? match[7] : false;
+        return (match&&match[8].length==11)? match[8] : false;
     }
 
     const youTubeVideoId = youtubeParser(videoUrl)

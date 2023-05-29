@@ -41,11 +41,21 @@ export default function PostVideo(){
                         <Input type="text" name="title" value={title} onChange={e=>setTitle(e.target.value)} required/>
                     </Label>
                     <Label>
-                        <InputName>Link to <br/>YouTube Video</InputName>
+                        <InputNameWithTooltip>
+                          <div>Link to <br/>YouTube Video</div>
+                          <TooltipWrapper>
+                            <TooltipIcon>i</TooltipIcon>
+                            <Tooltip>
+                                The link will be parsed and<br/>
+                                the linked vieo will be embedded.<br/>
+                                Other platforms are not supported.
+                            </Tooltip>
+                          </TooltipWrapper>
+                        </InputNameWithTooltip>
                         <Input type="text" name="videoUrl" value={videoUrl} onChange={e=>setVideoUrl(e.target.value)} required/>
                     </Label>
                     <Label>
-                        <InputName>Description</InputName>
+                        <InputNameWithTooltip>Description<span style={{fontSize:'0.7em'}}>(Optional)</span></InputNameWithTooltip>
                         <Input type="text" name="desc" value={desc} onChange={e=>setDesc(e.target.value)} />
                     </Label>
                     <FormButton>Submit</FormButton>
@@ -57,3 +67,48 @@ export default function PostVideo(){
 
 const PostPage = styled(FormPage)`
 `
+const InputNameWithTooltip = styled(InputName)`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+`
+
+const TooltipWrapper = styled.div`
+    position: relative;
+`
+const Tooltip = styled.p`
+    visibility: hidden;
+    white-space: nowrap;
+    font-size: 0.8em;
+    position: absolute;
+    left: 50%;
+    bottom: 150%;
+    background: var(--ui-bg-color);
+    padding: 15px;
+    border-radius: 5px;
+    transform: translate(-50%);
+
+    &::after {
+        content: " ";
+        position: absolute;
+        top: 100%; /* At the bottom of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--ui-bg-color) transparent transparent transparent;
+    }
+    
+`
+
+const TooltipIcon = styled.div`
+    background: var(--ui-bg-color);
+    width: 1.5em; height: 1.5em;
+    font-size: 0.8em;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    &:hover + ${Tooltip} {
+        visibility: visible;
+    }
+`
+

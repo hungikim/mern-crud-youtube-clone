@@ -62,6 +62,11 @@ export const Input = styled.input`
     width: 250px;
     font-size: 1em;
     background-color: rgb(200,200,200);
+    
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 5px #555;
+    }
 
     @media (max-width: 768px) {
         width: 100%;

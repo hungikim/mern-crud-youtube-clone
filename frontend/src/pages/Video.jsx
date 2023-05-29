@@ -25,13 +25,16 @@ export default function Video(){
     useEffect(()=>{
         const controller = new AbortController()
         const signal = controller.signal
+        const fetchVideo = async () => {
+            const fetchUrl = `${import.meta.env.VITE_API_URL}/videos/${videoId}`
+            const fetchConfig = { method: 'GET' }
+            const rawResponse = await fetch(fetchUrl, fetchConfig)
+            const response = await rawResponse.json()
+            if (!response.err) setVideo(response)
+        }
+        fetchVideo()
+          .catch(err=>{console.log(err);alert(`Failed to fetch video: ${err}`);})
 
-        const fetchUrl = `${import.meta.env.VITE_API_URL}/videos/${videoId}`
-        const fetchConfig = { method: 'GET' }
-        fetch(fetchUrl, fetchConfig)
-            .then(res=>res.json())
-            .then(jsonData=>setVideo(jsonData))
-            .catch(err=>alert(`Failed to fetch video: ${err}`))
         dispatch(setIsUpdateFormVisible(false))
 
         return () => controller.abort()
@@ -61,7 +64,7 @@ export default function Video(){
 
     return (
         <div className={css.VideoPage}>
-            {video && 
+            {video?
                 <>
                   <YouTube type='video' videoUrl={video.videoUrl}/>
                   <h2 className={css.title}>{video.title}</h2>
@@ -102,6 +105,11 @@ export default function Video(){
                     {video.desc && <p>{video.desc}</p>}
                   </div>
                   <div className={css.comments}>Comments: ....</div>
+                </>
+                
+                : // Load fail
+                <>
+                <div>Failed to load video</div>
                 </>
             }
             {isUpdateFormVisible && 
