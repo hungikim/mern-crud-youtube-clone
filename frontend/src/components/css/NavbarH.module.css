@@ -82,4 +82,15 @@
     .searchBar {
         display: none;
     }
+
+    .mobileMenuButton {
+
+    }
+    
+    .loginButton {
+        visibility: hidden;
+    }
+    .signupButton {
+        visibility: hidden;
+    }
 }

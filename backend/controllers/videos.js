@@ -52,6 +52,13 @@ export const updateVideo = async (req, res) => {
         }
     } catch (err) { res.status(503).json({err: err.message}) }
 }
+
+export const updateLike = async (req, res) => {
+    try {
+
+    } catch (err) { res.status(503).json({err:err.message}) }
+}
+
 export const deleteVideo = async (req, res) => {
     try {
         const user = req.body.user

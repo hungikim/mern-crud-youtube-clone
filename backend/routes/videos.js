@@ -7,6 +7,7 @@ const router = express.Router()
 router.get('/:videoId', getVideo)
 router.delete('/:videoId', verifyToken, deleteVideo)
 router.patch('/:videoId', verifyToken, updateVideo)
+router.patch('/like/:videoId')
 router.get('/', getAllVideos) // All videos
 router.post('/', verifyToken, postVideo) // Post a video
 router.get('/user/:userId', getUserVideos) // Specific user's videos

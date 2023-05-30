@@ -107,7 +107,6 @@ export default function Video(){
                   <div className={css.comments}>Comments: ....</div>
                 </>
             }
-            { !video && <div>Loading ...</div>}
             { video && video.err && <div>Failed to load video</div> }
             {isUpdateFormVisible && 
               <UpdateVideo ref={updateRef} videoId={videoId} originalTitle={video.title} originalUrl={video.videoUrl} originalDesc={video.desc} userId={user._id} token={token} />
