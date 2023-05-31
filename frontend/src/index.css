@@ -7,13 +7,14 @@
 /* CSS Variables */
 :root {
     --main-color: rgb(230,230,230);
+    --body-bg-color: rgb(20,20,20);
     --navbar-bg-color: rgb(40,40,40);
     --ui-bg-color: rgb(50,50,50);
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: rgb(20,20,20);
+    background-color: var(--body-bg-color);
     color: var(--main-color);
 }
 

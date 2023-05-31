@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background-color: var(--navbar-bg-color);
+    background: var(--navbar-bg-color);
     padding: 2rem 2rem;
     gap: 3vh;
     border-right: 1px solid rgb(70,70,70);
@@ -28,6 +28,8 @@
 
 @media (max-width: 768px) {
     .NavbarV {
-        display: none;
+        background: var(--body-bg-color);
+        width: 100%;
+        border: none;
     }
 }

@@ -9,8 +9,24 @@ import Video from './pages/Video'
 import PostVideo from './pages/PostVideo/'
 import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
+import { setIsMobile } from './state/menuSlice'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
+  const isMobile = useSelector(state=>state.menu.isMobile)
+  const query = "(max-width:768px)" // Check for mobile devices
+  const dispatch = useDispatch()
+  useEffect(() => { // Detect mobile devices. Source: https://fireship.io/snippets/use-media-query-hook/
+    const media = window.matchMedia(query);
+    if (media.matches !== isMobile) {
+      dispatch(setIsMobile(media.matches))
+    }
+    const listener = () => dispatch(setIsMobile(media.matches))
+    window.addEventListener("resize", listener);
+    return () => window.removeEventListener("resize", listener);
+  }, [isMobile, query]);
+
   return (
     <div className='App'>
       <NavbarH />

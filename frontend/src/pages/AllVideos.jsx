@@ -21,9 +21,7 @@ export default function AllVideos(){
     }, [allVideos])
 
     const searchText = useSelector(state=>state.menu.searchText)
-    useEffect(()=>{
-        console.log(searchText)
-    }, [searchText])
+
     return (
         <AllVideosPage>
             {allVideos &&  

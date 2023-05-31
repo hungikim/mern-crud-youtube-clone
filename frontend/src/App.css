@@ -20,6 +20,6 @@
 
 @media (max-width: 768px) {
     .Content {
-        padding: 1rem;
+        padding: 0 1rem;
     }
 }
