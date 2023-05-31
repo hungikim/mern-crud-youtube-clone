@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import css from './css/NavbarH.module.css'
 import { toggleIsProfileMenuVisible, setSearchText, toggleIsMobileMenuVisible } from '../state/menuSlice.js'
 import { Button } from './styled/Button.styled.js'
-import ProfileMenu from './ProfileMenu'
+import ProfileMenu, { Menu } from './ProfileMenu'
 import { useRef, useState } from 'react'
 import { useOutsideCloser } from '../hooks/useOutsideCloser'
 import { styled } from 'styled-components'
@@ -13,37 +13,47 @@ export default function NavbarH(){
     const isMobile = useSelector(state=>state.menu.isMobile)
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
     const [isMobileProfileOpen, setIsMobileProfileOpen] = useState(false)
+    const isMobileMenuVisible = useSelector(state=>state.menu.isMobileMenuVisible)
 
-    if (isMobile) { return (  // Mobile Navbar
-      <nav className={css.NavbarH}>
-        <MobileNavLeft>
-          {isMobileSearchOpen ? (
-            <SearchBar/>
+    if (isMobile) { // Mobile Navbar
+      if (isMobileMenuVisible) return (
+        <nav className={css.NavbarH}>
+          <MobileMenuButton />
+        </nav>
+      )
+      else return (
+        <nav className={css.NavbarH}>
+          {isMobileSearchOpen? (
+            <MobileNavLeft>
+              <SearchBar/>
+            </MobileNavLeft>
           ) : (
-            <>
-              <MobileMenuButton onClick={()=>setIsMobileMenuOpen(true)}/>
+            <MobileNavLeft>
+              <MobileMenuButton />
               <Logo />
-            </>
+            </MobileNavLeft>
           )}
-        </MobileNavLeft>
 
-        <span className={css.navRight}>
-          <MobileSearchButton onClick={()=>setIsMobileSearchOpen(isMobileSearchOpen? false : true)} />
-          {!isMobileSearchOpen && <MobileProfileButton onClick={()=>setIsMobileProfileOpen(isMobileProfileOpen? false : true)}/>}
-          <MobileProfileMenu isOpen={isMobileProfileOpen}/>
-        </span>
+          <span className={css.navRight}>
+            <MobileSearchButton onClick={()=>setIsMobileSearchOpen(isMobileSearchOpen? false : true)} />
+            <MobileProfileButton onClick={()=>setIsMobileProfileOpen(isMobileProfileOpen? false : true)} user={user}/>
+            <MobileProfileMenu isOpen={isMobileProfileOpen} setIsOpen={setIsMobileProfileOpen} user={user} />
+          </span>
 
-      </nav>
+        </nav>
 
-    ) } else { return ( // Desktop Navbar
+      ) 
+
+    } else { return ( // Desktop Navbar
 
          <nav className={css.NavbarH}>
            <Logo />
            <SearchBar/>
            
            <span className={css.navRight}>
-             {user?  ( <><PostVideoButton/><Profile user={user}/></> 
-              ) : ( <><LoginButton/><SignupButton/></>)
+             {user?  
+               <><PostVideoButton/><Profile user={user}/></>
+             : <><LoginButton/><SignupButton/></>
              }
            </span>
          </nav>
@@ -105,11 +115,19 @@ const MobileSearchButton = ({ onClick }) => (
     <path fill="currentColor" d="M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z"/>
   </svg>
 )
-const MobileProfileButton = ({ onClick }) => (
-  <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" height="28" width="28" viewBox="0 -960 960 960">
-    <path fill="currentColor" d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.814-195Q422-450 382.5-489.686q-39.5-39.686-39.5-97.5t39.686-97.314q39.686-39.5 97.5-39.5t97.314 39.686q39.5 39.686 39.5 97.5T577.314-489.5q-39.686 39.5-97.5 39.5Zm.654 370Q398-80 325-111.5q-73-31.5-127.5-86t-86-127.266Q80-397.532 80-480.266T111.5-635.5q31.5-72.5 86-127t127.266-86q72.766-31.5 155.5-31.5T635.5-848.5q72.5 31.5 127 86t86 127.032q31.5 72.532 31.5 155T848.5-325q-31.5 73-86 127.5t-127.032 86q-72.532 31.5-155 31.5ZM480-140q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/>
-  </svg>
+const MobileProfileButton = ({ onClick, user }) => (
+  <>
+  {user?
+    <div onClick={onClick} className={css.profileItem}>{user.channelName}</div>
+  :
+    <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" height="28" width="28" viewBox="0 -960 960 960">
+      <path fill="currentColor" d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.814-195Q422-450 382.5-489.686q-39.5-39.686-39.5-97.5t39.686-97.314q39.686-39.5 97.5-39.5t97.314 39.686q39.5 39.686 39.5 97.5T577.314-489.5q-39.686 39.5-97.5 39.5Zm.654 370Q398-80 325-111.5q-73-31.5-127.5-86t-86-127.266Q80-397.532 80-480.266T111.5-635.5q31.5-72.5 86-127t127.266-86q72.766-31.5 155.5-31.5T635.5-848.5q72.5 31.5 127 86t86 127.032q31.5 72.532 31.5 155T848.5-325q-31.5 73-86 127.5t-127.032 86q-72.532 31.5-155 31.5ZM480-140q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/>
+    </svg>
+
+  }
+  </>
 )
+
 const MobileMenuButton = () => {
   const dispatch = useDispatch()
   return (
@@ -119,15 +137,40 @@ const MobileMenuButton = () => {
   )
 }
 
-const MobileProfileMenu = ({ isOpen }) => ( 
-  <div style={{display: isOpen? 'initial' : 'none'}}>
-    hi
-  </div>
-)
+const MobileProfileMenu = ({ isOpen, setIsOpen, user }) => {
+  const dispatch = useDispatch()
+  const closeProfileMenu = () => setIsOpen(false)
+  return (
+    <MobileMenu style={{display: isOpen? 'flex' : 'none'}}>
+      {user?
+        <>
+        <NavLink to='/' onClick={()=>{ dispatch(setLogout()); alert("You are logged out"); closeProfileMenu(); }}>
+          Logout
+        </NavLink>
+        </>
+      :
+        <> 
+        <NavLink to='/login' onClick={closeProfileMenu}>
+          Log In
+        </NavLink>
+        <NavLink to='/signup' onClick={closeProfileMenu}>
+          Sign Up
+        </NavLink>
+        </>
+      }
+    </MobileMenu>
+  )
+}
 
 
 const MobileNavLeft = styled.span`
   display: flex;
   gap: 3px;
   align-items: center;
+  flex-grow: 1;
+`
+const MobileMenu = styled(Menu)`
+  right: 10px;
+  transform: none;
+  
 `

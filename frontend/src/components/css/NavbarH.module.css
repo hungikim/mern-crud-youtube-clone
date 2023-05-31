@@ -23,7 +23,9 @@
     font-weight: 700;
 }
 
-.searchBarWrapper { position: relative; }
+.searchBarWrapper { 
+    position: relative;
+}
 .searchBar {
     font-size: 1rem;
     background-color: #000;
@@ -85,12 +87,16 @@
         background: var(--body-bg-color);
         margin: 0;
     }
+    .searchBarWrapper {
+        width: 100%;
+        margin-right: 2vw;
+    }
     .searchBar {
-        width: 80vw;
+        width: 100%;
+        background-image: none;
+    }
+    .navRight {
+        flex-shrink: 0;
     }
 
-    .loginButton {
-    }
-    .signupButton {
-    }
 }

@@ -22,10 +22,10 @@ const ProfileMenu = forwardRef( function ProfileMenu (props, ref) {
 } )
 export default ProfileMenu;
 
-const Menu = styled.div`
+export const Menu = styled.div`
     position: absolute;
     width: 10rem;
-    top: 2rem;
+    top: 3rem;
     right: 50%;
     transform: translateX(50%);
     background: rgb(50,50,50);
@@ -36,9 +36,4 @@ const Menu = styled.div`
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
-
-    @media (max-width: 768px){
-        right: 0;
-        transform: none;
-    }
 `

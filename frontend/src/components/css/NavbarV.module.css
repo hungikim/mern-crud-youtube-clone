@@ -29,7 +29,7 @@
 @media (max-width: 768px) {
     .NavbarV {
         background: var(--body-bg-color);
-        width: 100%;
-        border: none;
+        position: fixed;
+        width: 70%;
     }
 }
