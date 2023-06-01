@@ -36,8 +36,12 @@ export default function NavbarH(){
 
           <span className={css.navRight}>
             <MobileSearchButton onClick={()=>setIsMobileSearchOpen(isMobileSearchOpen? false : true)} />
-            <MobileProfileButton onClick={()=>setIsMobileProfileOpen(isMobileProfileOpen? false : true)} user={user}/>
-            <MobileProfileMenu isOpen={isMobileProfileOpen} setIsOpen={setIsMobileProfileOpen} user={user} />
+            {!isMobileSearchOpen &&
+              <>
+              <MobileProfileButton onClick={()=>setIsMobileProfileOpen(isMobileProfileOpen? false : true)} user={user}/>
+              <MobileProfileMenu isOpen={isMobileProfileOpen} setIsOpen={setIsMobileProfileOpen} user={user} />
+              </>
+            }
           </span>
 
         </nav>
@@ -86,7 +90,7 @@ const SearchBar = () => {
 const LoginButton = () => <NavLink to='/login' className={css.loginButton}><Button>Login</Button></NavLink>
 const SignupButton = () => <NavLink to='/signup' className={css.signupButton}><Button>Sign Up</Button></NavLink>
 const PostVideoButton = () => (
-  <NavLink to='/postvideo'>
+  <NavLink className={css.postVideoButton} to='/postvideo'>
     <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 96 960 960"><path fill="currentColor" d="M445.935 860.065v-250h-250v-68.13h250v-250h68.13v250h250v68.13h-250v250h-68.13Z"/></svg>
   </NavLink>
 )
@@ -144,6 +148,7 @@ const MobileProfileMenu = ({ isOpen, setIsOpen, user }) => {
     <MobileMenu style={{display: isOpen? 'flex' : 'none'}}>
       {user?
         <>
+        <NavLink to='/postvideo' onClick={closeProfileMenu}>Post Video</NavLink>
         <NavLink to='/' onClick={()=>{ dispatch(setLogout()); alert("You are logged out"); closeProfileMenu(); }}>
           Logout
         </NavLink>

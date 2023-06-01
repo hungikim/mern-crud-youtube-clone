@@ -70,6 +70,12 @@
     gap: 15px;
 }
 
+.postVideoButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile {
     position: relative;
 }
@@ -97,6 +103,9 @@
     }
     .navRight {
         flex-shrink: 0;
+        gap: 5px;
+    }
+    .postVideoButton {
     }
 
 }
