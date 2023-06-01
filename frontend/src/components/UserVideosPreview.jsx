@@ -20,8 +20,8 @@ export default function UserVideosPreview ({ userId }) {
     return (
         <AllVideosPage>
             {userVideos &&
-                userVideos.map( ({ _id, user, author, title, videoUrl, updatedAt }) =>
-                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} updatedAt={updatedAt} />
+                userVideos.map( ({ _id, user, author, title, videoUrl, createdAt }) =>
+                    <Preview key={_id} videoId={_id} userId={user} author={author} title={title} videoUrl={videoUrl} createdAt={createdAt} />
                 )
             }
         </AllVideosPage>

@@ -19,7 +19,7 @@ export default function Preview ({ videoId, userId, author, title, videoUrl, cre
                     </NavLink>
                 </span>
                 <div className={css.videoInfoText}>
-                    <div className={css.title}>{title}</div>
+                    <div className={css.title}><NavLink to={`/video/${videoId}`}>{title}</NavLink></div>
                     <div className={css.channelAndDate}>
                         <span className={css.channelName}>{author}</span>
                         <span> • </span>
